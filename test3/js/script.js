@@ -4,40 +4,44 @@ var _t = false;
 var currentSymbols = [];
 var nav = document.getElementsByTagName('nav')[0];
 var tagSecret = document.getElementsByClassName('secret')[0];
-console.log('nav', nav);
 
-function _ctrlKeyDown(event){
 
-    if(event.key == 'Alt') {
+function _ctrlKeyDown(event) {
+
+    if (event.key == 'Alt') {
         alt = true;
     }
-    if(event.key == 'Control') {
+    if (event.key == 'Control') {
         ctrl = true;
     }
-    if(event.code == 'KeyT') {
-       _t = true;
+    if (event.code == 'KeyT') {
+        _t = true;
     }
 
-    if(ctrl && alt && _t){
+    if (ctrl && alt && _t) {
         nav.classList.toggle('visible');
     }
+    console.log('alt', alt, 'ctrl', ctrl, '_t', t);
 }
 
-function _ctrlKeyUp(event){
-    if(event.key == 'Alt') {
+function _ctrlKeyUp(event) {
+    if (event.key == 'Alt') {
         alt = false;
     }
-    if(event.key == 'Ctrl') {
+    if (event.key == 'Ctrl') {
         ctrl = false;
+    }
+    if (event.code == 'KeyT') {
+        _t = false;
     }
 }
 
-function checkSecret(event){
+function checkSecret(event) {
     var secret = "YTNJKJUBZ";
     currentSymbols.push(event.code.replace('Key', ''));
     var currentWord = currentSymbols.join('');
-    if(currentSymbols.length == 9) {
-        if(currentWord == secret) {
+    if (currentSymbols.length == 9) {
+        if (currentWord == secret) {
             tagSecret.classList.add('visible');
         }
         else {

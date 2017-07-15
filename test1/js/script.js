@@ -33,6 +33,7 @@ for (let i = 0; i < 5; i++) {
         var lowSound = lowSounds[i];
         var highSound = highSounds[i];
         var player = this.getElementsByTagName('audio')[0];
+        var self = this;
         if (high && !low) {
             player.src = highSound;
         }
@@ -43,9 +44,12 @@ for (let i = 0; i < 5; i++) {
             player.src = middleSound;
         }
 
-        console.log('player', player);
+        self.classList.toggle('active');
 
         player.play();
+        player.onended = function(self){
+            self.classList.toggle('active');
+        }
     };
     pianoPlayers.push(func);
 }
